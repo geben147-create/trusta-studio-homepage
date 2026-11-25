@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>캐릭터 숏폼 패키지</title>
+<meta name="description" content="와디즈 상세페이지 시안 — 우리 가게 캐릭터와 숏폼 패키지 (미제출)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* 와디즈 상세페이지는 세로 1장(최대 860px) 흐름으로 일반 홈페이지와 분리 */
+:root{--ink:#14161c;--muted:#6b6f78;--line:#e6e2d8;--bg:#eeece6;--brand:#2f5bd6;--yellow:#ffe14d;--navy:#16233b;--red:#d23b3b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Pretendard Variable",Pretendard,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;word-break:keep-all;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+.draft{position:sticky;top:0;z-index:9;background:var(--red);color:#fff;text-align:center;font-size:13px;font-weight:600;padding:8px 16px}
+.page{max-width:860px;margin:0 auto;background:#fff}
+.blk{padding:72px 16px}
+.in{max-width:640px;margin:0 auto}
+.k{font-size:13px;letter-spacing:.18em;font-weight:700;color:var(--brand)}
+h1{font-size:clamp(34px,7vw,56px);line-height:1.15;letter-spacing:-.035em;font-weight:800}
+h2{font-size:clamp(26px,5vw,38px);line-height:1.25;letter-spacing:-.03em;font-weight:800;margin:10px 0 18px}
+p.s{color:var(--muted);font-size:17px}
+.cover{background:var(--navy);color:#fff;padding:0}
+.cover video{width:100%;aspect-ratio:9/12;object-fit:cover}
+.cover .in{padding:48px 16px 64px}
+.cover h1 em{font-style:normal;color:var(--yellow)}
+.pill{display:inline-block;background:var(--yellow);color:#111;font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.checks{display:grid;gap:10px;margin-top:20px}
+.checks label{display:flex;gap:12px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:12px;font-size:16px;cursor:pointer}
+.checks input{width:20px;height:20px;accent-color:var(--brand)}
+.alert{display:none;margin-top:14px;background:#fff6d1;border:1px solid #f0d36b;padding:16px;border-radius:12px;font-weight:600}
+.dark{background:var(--ink);color:#fff}.dark p.s{color:#a7acb6}
+.imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.imgs img{border-radius:12px;aspect-ratio:3/4;object-fit:cover;width:100%}
+.flow{display:grid;gap:0;margin-top:24px;counter-reset:f}
+.flow div{counter-increment:f;display:grid;grid-template-columns:56px 1fr;gap:6px;padding:18px 0;border-top:1px solid var(--line)}
+.flow div::before{content:counter(f);width:40px;height:40px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center}
+.flow b{display:block;font-size:18px}
+.rw{display:grid;gap:14px;margin-top:24px}
+.r{border:2px solid var(--line);border-radius:16px;padding:22px;position:relative}
+.r.best{border-color:var(--brand)}
+.r .tag{position:absolute;top:-12px;left:18px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.r .pr{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.r .pr small{font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
+.r h3{font-size:19px;margin:4px 0 10px}
+.r ul{padding-left:18px;color:#444;font-size:15px;display:grid;gap:4px}
+.r .pick{margin-top:14px;width:100%;font:inherit;font-weight:700;padding:14px;border-radius:12px;border:0;background:#f1f3fb;color:var(--brand);cursor:pointer}
+.r.on{border-color:var(--brand);background:#f7f9ff}.r.on .pick{background:var(--brand);color:#fff}
+.tl{margin-top:24px;border-left:3px solid var(--brand);padding-left:20px;display:grid;gap:22px}
+.tl b{display:block;font-size:17px}.tl span{color:var(--muted);font-size:15px}
+.notice{background:#f6f5f1;border-radius:14px;padding:22px;margin-top:20px}
+.notice li{margin-left:18px;font-size:15px;color:#444;margin-bottom:6px}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-weight:700;font-size:17px;cursor:pointer;list-style:none}
+summary::before{content:"Q. ";color:var(--brand)}
+details p{margin-top:10px;color:var(--muted)}
+.end{background:var(--navy);color:#fff;text-align:center}
+.cta{position:sticky;bottom:0;z-index:8;background:#fff;border-top:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;align-items:center;max-width:860px;margin:0 auto}
+.cta .sel{flex:1;font-size:14px;color:var(--muted)}
+.cta button{font:inherit;font-weight:800;border:0;border-radius:12px;background:var(--brand);color:#fff;padding:14px 22px;cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal.on{display:flex}
+.modal div{background:#fff;border-radius:16px;padding:26px;max-width:420px;width:100%}
+.modal button{margin-top:16px;font:inherit;font-weight:700;border:0;border-radius:10px;background:var(--ink);color:#fff;padding:12px 18px;cursor:pointer}
+.back{display:block;text-align:center;font-size:14px;color:var(--muted);padding:22px}
+</style>
+</head>
+<body>
+<div class="draft">와디즈 상세페이지 시안입니다 · 제출 전이며 결제되지 않습니다</div>
+<main class="page">
+
+  <section class="blk cover">
+    <video autoplay muted loop playsinline poster="assets/video/shorts-poster.jpg"><source src="assets/video/shorts-reel.mp4" type="video/mp4"></video>
+    <div class="in">
+      <span class="pill">우리 가게 캐릭터 + 숏폼 패키지</span>
+      <h1>사장님 대신<br><em>가게를 알려 줄 캐릭터</em>를<br>만들어 두세요.</h1>
+      <p class="s" style="color:#c9cfdb;margin-top:18px">가게 분위기에 맞는 캐릭터를 만들고, 그 캐릭터가 나오는 세로형 짧은 영상까지 함께 드립니다.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="in">
+      <p class="k">PROBLEM</p>
+      <h2>이런 고민,<br>있지 않으세요?</h2>
+      <div class="checks" id="checks">
+        <label><input type="checkbox">릴스·쇼츠를 해야 한다는데, 내 얼굴이 나오는 건 부담스럽다</label>
+        <label><input type="checkbox">올릴 때마다 디자인이 달라져서 손님이 가게를 잘 기억하지 못한다</label>
+        <label><input type="checkbox">대행사는 비싸고, 직접 하기엔 시간이 없다</label>
+        <label><input type="checkbox">AI로 만들어 봤는데 캐릭터 얼굴이 매번 달라진다</label>
+      </div>
+      <div class="alert" id="alert">두 개 이상 해당한다면, 캐릭터를 하나 정해 두고 계속 쓰는 방법이 잘 맞을 수 있습니다.</div>
+    </div>
+  </section>
+
+  <section class="blk dark">
+    <div class="in">
+      <p class="k" style="color:#8fa6ff">SOLUTION</p>
+      <h2>내 얼굴 대신 캐릭터로,<br>한결같은 모습으로.</h2>
+      <p class="s">정면·옆모습·표정을 담은 기준 그림을 먼저 정한 뒤 영상을 만듭니다. 여러 편을 만들어도 같은 캐릭터로 보이도록 맞춥니다. 아래는 직접 만든 예시입니다.</p>
+      <div class="imgs">
+        <img src="assets/img/char-01.jpg" alt="마스코트 3종 예시" style="aspect-ratio:4/3;grid-column:span 2">
+        <img src="assets/img/short-02.jpg" alt="햄스터 쇼츠 장면">
+        <img src="assets/img/short-05.jpg" alt="고양이 캐릭터 장면">
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="in">
+      <p class="k">HOW IT WORKS</p>
+      <h2>신청서 한 장이면<br>시작됩니다.</h2>
+      <div class="flow">
+        <div><span><b>신청서 작성</b>가게 이름·분위기·대표 상품·원하는 말투를 적어 주세요.</span></div>
+        <div><span><b>캐릭터 시안 3종</b>하나를 고르시면 정면·옆모습·표정 그림으로 정리합니다.</span></div>
+        <div><span><b>숏폼 제작</b>고른 캐릭터로 15–30초 길이의 세로 영상을 만듭니다.</span></div>
+        <div><span><b>수정 1회 · 최종 전달</b>원본 파일(PNG·MP4)을 드립니다.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="background:#f8f7f3">
+    <div class="in">
+      <p class="k">REWARDS</p>
+      <h2>리워드 구성</h2>
+      <p class="s">가격은 아직 확정 전입니다.</p>
+      <div class="rw" id="rw">
+        <div class="r" data-name="A. 상품 소개 문안 패키지"><p class="pr">250,000원<small>검토 중</small></p><h3>A. 상품 소개 문안 패키지</h3><ul><li>상품 소개 페이지 문안 1편</li><li>SNS 게시물 초안 3개</li><li>근거 확인표</li></ul><button class="pick">이 리워드 선택</button></div>
+        <div class="r best" data-name="B. 캐릭터 1종 + 숏폼 2편"><span class="tag">대표 리워드</span><p class="pr">가격 미정<small>확정 전</small></p><h3>B. 캐릭터 1종 + 숏폼 2편</h3><ul><li>캐릭터 시안 3종 → 1종 확정</li><li>캐릭터 기준 그림(정면·옆모습·표정)</li><li>15–30초 세로 숏폼 2편</li></ul><button class="pick">이 리워드 선택</button></div>
+        <div class="r" data-name="C. 캐릭터 + 숏폼 4편 + 카드뉴스"><p class="pr">가격 미정<small>확정 전</small></p><h3>C. 캐릭터 + 숏폼 4편 + 카드뉴스</h3><ul><li>B 구성 전체</li><li>숏폼 2편 추가(총 4편)</li><li>캐릭터 카드뉴스 1세트</li></ul><button class="pick">이 리워드 선택</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="in">
+      <p class="k">SCHEDULE</p>
+      <h2>제작·전달 일정 <span style="font-size:.55em;color:var(--muted)">(예시)</span></h2>
+      <div class="tl">
+        <div><b>펀딩 종료 후 3일 이내</b><span>신청서 링크 발송</span></div>
+        <div><b>신청서 접수 후 영업일 5일</b><span>캐릭터 시안 3종 전달</span></div>
+        <div><b>캐릭터 확정 후 영업일 7일</b><span>숏폼 1차 시안 전달</span></div>
+        <div><b>수정 요청 후 영업일 3일</b><span>최종 파일 전달</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="background:#f8f7f3">
+    <div class="in">
+      <p class="k">NOTICE</p>
+      <h2>꼭 확인해 주세요</h2>
+      <ul class="notice">
+        <li>조회수·매출·팔로워 증가를 보장하지 않습니다.</li>
+        <li>실존 인물·연예인·타사 캐릭터를 닮게 만드는 요청은 받지 않습니다.</li>
+        <li>의료·건강기능식품·화장품 효능 표현은 별도 심의 대상일 수 있어 문구 작성 범위에서 제외합니다.</li>
+        <li>수정은 1회 포함이며, 추가 수정·추가 편수는 별도 협의입니다.</li>
+        <li>제작을 시작한 뒤의 취소·환불 기준은 펀딩을 열기 전에 정해서 안내합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="in">
+      <p class="k">FAQ</p>
+      <h2>자주 묻는 질문</h2>
+      <details><summary>캐릭터 저작권은 누구에게 있나요?</summary><p>광고에 써도 되는지 등 사용 범위는 펀딩을 열기 전에 정해서 안내합니다.</p></details>
+      <details><summary>AI로 만든 결과물인가요?</summary><p>네. AI 도구로 만든 뒤 사람이 고르고 다듬습니다. 사용한 도구의 이용약관을 지켜 전달합니다.</p></details>
+      <details><summary>영상에 목소리도 들어가나요?</summary><p>기본은 자막과 배경음입니다. 음성 포함 여부는 리워드 확정 시 함께 정합니다.</p></details>
+      <details><summary>업로드까지 해 주나요?</summary><p>이 패키지는 파일 전달까지입니다. 꾸준한 운영이 필요하면 SNS 월관리 상품을 안내드립니다.</p></details>
+    </div>
+  </section>
+
+  <section class="blk end">
+    <div class="in">
+      <h2>우리 가게 캐릭터로<br>꾸준히 소식을 전해 보세요.</h2>
+      <p class="s" style="color:#c9cfdb">리워드를 고른 뒤 아래 버튼을 눌러 보세요. (시안이라 결제되지 않습니다.)</p>
+    </div>
+  </section>
+  <a class="back" href="home.html">← 스튜디오 홈페이지로</a>
+</main>
+
+<div class="cta"><span class="sel" id="sel">리워드를 선택해 주세요</span><button id="go">펀딩하기</button></div>
+<div class="modal" id="modal"><div><b>시안 화면입니다</b><p id="mtext" style="margin-top:8px;color:#555">와디즈에 제출되지 않았고 결제가 연결되어 있지 않습니다.</p><button id="close">닫기</button></div></div>
+
+<script>
+const cks=[...document.querySelectorAll('#checks input')];
+cks.forEach(c=>c.addEventListener('change',()=>{document.getElementById('alert').style.display=cks.filter(x=>x.checked).length>=2?'block':'none'}));
+let picked='';
+document.querySelectorAll('.r').forEach(r=>r.querySelector('.pick').addEventListener('click',()=>{
+  document.querySelectorAll('.r').forEach(x=>x.classList.remove('on'));r.classList.add('on');picked=r.dataset.name;
+  document.getElementById('sel').textContent='선택: '+picked;
+}));
+document.getElementById('go').addEventListener('click',()=>{
+  document.getElementById('mtext').textContent=(picked?'선택한 리워드: '+picked+'\n':'')+'와디즈에 제출되지 않았고 결제가 연결되어 있지 않습니다.';
+  document.getElementById('modal').classList.add('on');
+});
+document.getElementById('close').addEventListener('click',()=>document.getElementById('modal').classList.remove('on'));
+</script>
+</body>
+</html>
